@@ -15,20 +15,21 @@
             $( "#plain-letter-list" ).sortable({
                 revert: true,
                 start: function(event, ui) {
-                    debugger
-                    $(ui.item[0]).index()
+                    var prevPos = ui.item.index();
+                    ui.item.attr('previous-position', prevPos)
 
                 },
                 stop: function(event, ui) {
-                    debugger
-                    var encypted = $('#encrypted-letter-list li').map(function(index, element) {return $(element).html()}).toArray();
-                    var plain = $('#plain-letter-list li').map(function(index, element) {return $(element).html()}).toArray();
+                    var currPos = ui.item.index();
+                    var prevPos = ui.item.attr('previous-position');
+                    var letter = ui.item.html();
 
                     $.ajax({
                         method: 'POST',
                         data : {
-                            encrypted: encypted,
-                            plain: plain
+                            letter: letter,
+                            prevPos: prevPos,
+                            currPos: currPos
                         },
                         url : "/decrypter/order",
                         success: function (data) {
