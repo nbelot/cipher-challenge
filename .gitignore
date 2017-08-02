@@ -22,3 +22,5 @@ stacktrace.log
 *.iml
 grailsw
 grailsw.bat
+/.slcache
+*.tld

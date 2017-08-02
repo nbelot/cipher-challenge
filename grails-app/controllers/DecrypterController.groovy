@@ -8,6 +8,7 @@ class DecrypterController {
     def fileService
 
     def encryptedText
+    def decryptedText
     def plainText
     def encryptedLetterFreqArr
     def plainLetterFreqArr
@@ -25,15 +26,15 @@ class DecrypterController {
         plainLetterFreqArr= textService.countLetters(uploadedPlainFile)
         encryptedLetterFreqArr= textService.countLetters(uploadedEncryptedFile)
 
-        encryptedText = textService.decryptText(encryptedText, encryptedLetterFreqArr, plainLetterFreqArr)
+        decryptedText = textService.decryptText(encryptedText, encryptedLetterFreqArr, plainLetterFreqArr)
 
         render view: 'result', model: createModel()
     }
 
     def order() {
-        plainLetterFreqArr = params.plain[]
+        def plainLetterFreqArr = params.get("plain[]")
 
-        encryptedText = textService.decryptText(encryptedText, encryptedLetterFreqArr, plainLetterFreqArr)
+        decryptedText = textService.decryptText(encryptedText, encryptedLetterFreqArr, plainLetterFreqArr)
 
         render view: 'result', model: createModel()
     }
@@ -41,7 +42,7 @@ class DecrypterController {
     def createModel() {
         def model = [:]
         model.encryptedText = encryptedText
-        model.plainText = plainText
+        model.decryptedText = decryptedText
         model.encryptedLetterFreq = encryptedLetterFreqArr
         model.plainLetterFreq = plainLetterFreqArr
         return model

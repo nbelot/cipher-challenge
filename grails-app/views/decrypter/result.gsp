@@ -14,18 +14,29 @@
         $( function() {
             $( "#plain-letter-list" ).sortable({
                 revert: true,
-                stop: function( event, ui ) {
+                start: function(event, ui) {
+                    debugger
+                    $(ui.item[0]).index()
+
+                },
+                stop: function(event, ui) {
+                    debugger
                     var encypted = $('#encrypted-letter-list li').map(function(index, element) {return $(element).html()}).toArray();
                     var plain = $('#plain-letter-list li').map(function(index, element) {return $(element).html()}).toArray();
+
                     $.ajax({
-                        type : "POST",
-                        url : "/decrypter/order",
+                        method: 'POST',
                         data : {
                             encrypted: encypted,
                             plain: plain
                         },
-                        complete: function(){
-                            console.log('success')
+                        url : "/decrypter/order",
+                        success: function (data) {
+                            $("#decryption-container").empty();
+                            $("#decryption-container").append(data);
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+
                         }
                     });
                 }
@@ -37,31 +48,8 @@
 
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <g:each in="${encryptedText.split('\n')}" var="paragraph">
-                    <p>${paragraph.trim()}</p>
-                </g:each>
-            </div>
-            <div class="col-md-1">
-                <ul id="encrypted-letter-list">
-                    <g:each in="${encryptedLetterFreq}" var="encryptedLetter">
-                        <li>${encryptedLetter}</li>
-                    </g:each>
-                </ul>
-            </div>
-            <div class="col-md-1">
-                <ul id="plain-letter-list">
-                    <g:each in="${plainLetterFreq}" var="plainLetter" status="i">
-                        <li position="${i}">${plainLetter}</li>
-                    </g:each>
-                </ul>
-            </div>
-            <div class="col-md-5">
-                <g:each in="${plainText.split('\n')}" var="paragraph">
-                    <p>${paragraph.trim()}</p>
-                </g:each>
-            </div>
+        <div id="decryption-container" class="row">
+            <tmpl:decrypted />
         </div>
     </div>
 </body>
