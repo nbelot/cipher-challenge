@@ -11,27 +11,29 @@
     <title></title>
     <meta name="layout" content="main2"/>
     <script>
-        $( function() {
-            $( "#plain-letter-list" ).sortable({
-                revert: true,
-                start: function(event, ui) {
-                    var prevPos = ui.item.index();
-                    ui.item.attr('previous-position', prevPos)
+        $(document).ready(function() {
 
+            $("#plain-letter-list").swappable({
+                items:'.letter', // Mandatory option, class only.
+                cursorAt: {top:-20},
+                start : function(event, ui) {
+                    $(ui.item[0]).index();
                 },
-                stop: function(event, ui) {
-                    var currPos = ui.item.index();
-                    var prevPos = ui.item.attr('previous-position');
-                    var letter = ui.item.html();
+                stop : function(event, ui) {
+                    var encypted = $('#encrypted-letter-list li').map(function (index, element) {
+                        return $(element).html()
+                    }).toArray();
+                    var plain = $('#plain-letter-list li').map(function (index, element) {
+                        return $(element).html()
+                    }).toArray();
 
                     $.ajax({
                         method: 'POST',
-                        data : {
-                            letter: letter,
-                            prevPos: prevPos,
-                            currPos: currPos
+                        data: {
+                            encrypted: encypted,
+                            plain: plain
                         },
-                        url : "/decrypter/order",
+                        url: "/decrypter/order",
                         success: function (data) {
                             $("#decryption-container").empty();
                             $("#decryption-container").append(data);
@@ -41,9 +43,10 @@
                         }
                     });
                 }
-            });
-            $( "ul, li" ).disableSelection();
-        } );
+                });
+        });
+
+
     </script>
 </head>
 

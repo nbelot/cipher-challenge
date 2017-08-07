@@ -16,8 +16,8 @@
   		<asset:stylesheet src="bootstrap-theme.css"/>
   		<asset:stylesheet src="jquery-ui.css"/>
 		<asset:javascript src="application.js"/>
-		<asset:javascript src="bootstrap.js"/>
 		<asset:javascript src="jquery-ui.js"/>
+		<asset:javascript src="jquery.ui.swappable.js"/>
 		<g:layoutHead/>
 	</head>
 	<body>

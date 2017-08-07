@@ -13,7 +13,7 @@
 <div class="col-md-1">
     <ul id="plain-letter-list">
         <g:each in="${plainLetterFreq}" var="plainLetter" status="i">
-            <li position="${i}">${plainLetter}</li>
+            <li class="letter" position="${i}">${plainLetter}</li>
         </g:each>
     </ul>
 </div>

@@ -28,13 +28,11 @@ class TextService {
 
     def decryptText(encryptedText, encryptedLetterFreqArr, plainLetterFreqArr) {
         for(int i=0;i<plainLetterFreqArr.size();i++) {
-            println(encryptedLetterFreqArr[i].toString() + "-" + plainLetterFreqArr[i].toString())
             encryptedText = encryptedText.replace( encryptedLetterFreqArr[i].toString(), "["+i+"]")
             encryptedText = encryptedText.replace(encryptedLetterFreqArr[i].toString().toUpperCase(), "["+i+"*]")
         }
 
         for(int i=0;i<plainLetterFreqArr.size();i++) {
-            println(encryptedLetterFreqArr[i].toString() + "-" + plainLetterFreqArr[i].toString())
             encryptedText = encryptedText.replace("["+i+"]", plainLetterFreqArr[i].toString())
             encryptedText = encryptedText.replace("["+i+"*]", plainLetterFreqArr[i].toString().toUpperCase())
         }
