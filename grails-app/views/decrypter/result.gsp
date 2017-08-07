@@ -15,7 +15,7 @@
 
             $("#plain-letter-list").swappable({
                 items:'.letter', // Mandatory option, class only.
-                cursorAt: {top:-20},
+                cursorAt: {top:-10},
                 start : function(event, ui) {
                     $(ui.item[0]).index();
                 },
@@ -52,6 +52,7 @@
 
 <body>
     <div class="container">
+        <h4>Please, adjust the decryption accuracy. Order the column <strong>"Decrypted letter"</strong> if needed by swapping letters</h4>
         <div id="decryption-container" class="row">
             <tmpl:decrypted />
         </div>

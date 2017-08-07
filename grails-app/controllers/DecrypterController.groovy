@@ -12,7 +12,6 @@ class DecrypterController {
     def plainText
     def encryptedLetterFreqArr
     def plainLetterFreqArr
-    def plainLetterFreqDefault = ['e','t','a','o','i','n','s','h','r','d','l','u','c','m','w','f','y','g','p','b','v','k','x','j','q','z']
 
     def index() { }
 

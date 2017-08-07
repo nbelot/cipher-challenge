@@ -1,0 +1,13 @@
+#decryption-container {
+    margin-top: 30px;
+}
+
+#plain-letter-list, #encrypted-letter-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.letter {
+    cursor: move;
+}
