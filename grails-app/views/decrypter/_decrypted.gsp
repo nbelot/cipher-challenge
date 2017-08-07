@@ -1,3 +1,5 @@
+<asset:javascript src="order-table.js"/>
+
 <div class="col-md-5">
     <label class="control-label">Encrypted text</label>
     <g:each in="${encryptedText.split('\n')}" var="paragraph">

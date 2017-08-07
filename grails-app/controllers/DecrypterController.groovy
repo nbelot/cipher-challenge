@@ -35,7 +35,7 @@ class DecrypterController {
 
         decryptedText = textService.decryptText(encryptedText, encryptedLetterFreqArr, plainLetterFreqArr)
 
-        render view: 'result', model: createModel()
+        render template: 'decrypted', model: createModel()
     }
 
     def createModel() {
